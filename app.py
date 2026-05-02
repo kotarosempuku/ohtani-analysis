@@ -9,17 +9,21 @@ from pybaseball import statcast_batter
 
 st.title("大谷翔平 打撃分析")
 st.write("MLBデータを用いた打撃ゾーン分析です。")
+year=st.selectbox("シーズンを選択",[2026,2025,2024])
 
 # データ取得
 @st.cache_data
-def load_data():
-    df = statcast_batter('2026-03-01', '2026-04-29', player_id=660271)
+def load_data(year):
+    start = f'{year}-03-01'
+    end = f'{year}-11-01'
+    df = statcast_batter(start, end, player_id=660271)
     return df
 
-df = load_data()
+df = load_data(year)
 
 # レギュラーシーズンのみ
-regular_season = df[df['game_date'] >= '2026-03-26']
+#regular_season = df[df['game_date'] >= '2026-03-26']
+regular_season=df[df['game_type']=="R"]
 
 # 打数の定義
 non_ab_events = ['walk', 'hit_by_pitch', 'sac_fly', 'sac_bunt']
