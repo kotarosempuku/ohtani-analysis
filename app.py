@@ -77,8 +77,8 @@ summary = {
 cols = st.columns(len(summary))
 for i, (label, value) in enumerate(summary.items()):
     with cols[i]:
-        st.markdown(f"<div style='text-align:center; font-size:30px; color:gray;'>{label}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div style='text-align:center; font-size:30px; font-weight:bold;'>{value}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align:center; font-size:24px; color:gray;'>{label}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align:center; font-size:20px; font-weight:bold;'>{value}</div>", unsafe_allow_html=True)
 
 # ゾーンの設定
 cmap = LinearSegmentedColormap.from_list('ba', ['#4444aa', '#aa0000'])
