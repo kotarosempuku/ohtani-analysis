@@ -52,8 +52,8 @@ so=len(ab[ab["events"]=="strikeout"])
 k_pct=so/pa*100 if pa>0 else 0
 k_pct = so / pa * 100 if pa > 0 else 0
 
-ev=rs["launch_speed"].means()
-la=rs["launch_angle"].means()
+ev = rs['launch_speed'].mean()
+la = rs['launch_angle'].mean()
 
 st.subheader("Summary")
 col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns(11)
