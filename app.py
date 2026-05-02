@@ -22,18 +22,62 @@ def load_data(year):
 df = load_data(year)
 
 # レギュラーシーズンのみ
-#regular_season = df[df['game_date'] >= '2026-03-26']
-regular_season=df[df['game_type']=="R"]
+#rs = df[df['game_date'] >= '2026-03-26']
+rs=df[df['game_type']=="R"]
 
 # 打数の定義
 non_ab_events = ['walk', 'hit_by_pitch', 'sac_fly', 'sac_bunt']
-at_bats = regular_season[
-    regular_season['events'].notna() &
-    ~regular_season['events'].isin(non_ab_events)
+at_bats = rs[
+    rs['events'].notna() &
+    ~rs['events'].isin(non_ab_events)
 ].dropna(subset=['zone'])
 
 # ヒットの定義
 hit_events = ['single', 'double', 'triple', 'home_run']
+pitches=len(rs)
+pa=(rs[rs["events"].notna()])
+ab=rs[
+    rs["events"].nota()&
+    ~rs["events"].isin(non_ab_events)
+]
+
+h=ab[ab["events"].isin(hit_events)]
+single=ab[ab["events"]=="single"]
+double =ab[ab["events"]=="double"]
+triple=ab[ab["events"]=="triple"]
+hr=ab[ab["events"]=="home_run"]
+avg=len(h)/len(ab) if len(ab)>0 else 0
+
+so=len(ab[ab["events"]=="strikeout"])
+k_pct=so/pa*100 if pa>0 else 0
+ev=rs["launch_speed"].means()
+la=rs["launch_angle"].means()
+
+st.subheader("Summary")
+col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns(11)
+
+with col1:
+    st.metric("Pitches", pitches)
+with col2:
+    st.metric("PA", pa)
+with col3:
+    st.metric("H", len(h))
+with col4:
+    st.metric("1B", len(single))
+with col5:
+    st.metric("2B", len(double))
+with col6:
+    st.metric("3B", len(triple))
+with col7:
+    st.metric("HR", len(hr))
+with col8:
+    st.metric("AVG", f"{avg:.3f}")
+with col9:
+    st.metric("SO", so)
+with col10:
+    st.metric("K%", f"{k_pct:.1f}")
+with col11:
+    st.metric("EV", f"{ev:.1f}")
 
 # ゾーンの設定
 cmap = LinearSegmentedColormap.from_list('ba', ['#4444aa', '#aa0000'])
