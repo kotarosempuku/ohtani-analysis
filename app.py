@@ -37,7 +37,7 @@ hit_events = ['single', 'double', 'triple', 'home_run']
 pitches=len(rs)
 pa=(rs[rs["events"].notna()])
 ab=rs[
-    rs["events"].nota()&
+    rs["events"].notna()&
     ~rs["events"].isin(non_ab_events)
 ]
 
