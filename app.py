@@ -7,7 +7,17 @@ from matplotlib.path import Path
 from matplotlib.colors import LinearSegmentedColormap
 from pybaseball import statcast_batter
 
-st.set_page_config(page_title="大谷翔平打撃分析",layout="centered")
+st.set_page_config(page_title="大谷翔平打撃分析")
+
+st.markdown("""
+    <style>
+    .block-container {
+        max-width: 900px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 st.title("大谷翔平 打撃分析")
 st.write("MLBデータを用いた打撃ゾーン分析です。")
