@@ -9,7 +9,7 @@ from pybaseball import statcast_batter
 
 st.title("大谷翔平 打撃分析")
 st.write("MLBデータを用いた打撃ゾーン分析です。")
-year=st.selectbox("シーズンを選択",[2026,2025,2024])
+year=st.selectbox("シーズンを選択",[2026,2025,2024,2023,2022,2021,2020])
 
 # データ取得
 @st.cache_data
