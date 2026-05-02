@@ -7,6 +7,8 @@ from matplotlib.path import Path
 from matplotlib.colors import LinearSegmentedColormap
 from pybaseball import statcast_batter
 
+st.set_page_config(page_title="大谷翔平打撃分析",layout="wide")
+
 st.title("大谷翔平 打撃分析")
 st.write("MLBデータを用いた打撃ゾーン分析です。")
 year=st.selectbox("シーズンを選択",[2026,2025,2024,2023,2022,2021,2020])
