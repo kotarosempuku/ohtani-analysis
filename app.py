@@ -55,31 +55,32 @@ k_pct = so / pa * 100 if pa > 0 else 0
 ev = rs['launch_speed'].mean()
 la = rs['launch_angle'].mean()
 
-st.subheader("Summary")
-col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns(11)
+summary = {
+    "Pitches": pitches,
+    "PA": pa,
+    "H": len(h),
+    "1B": len(single),
+    "2B": len(double),
+    "3B": len(triple),
+    "HR": len(hr),
+    "AVG": f"{avg:.3f}",
+    "SO": so,
+    "K%": f"{k_pct:.1f}",
+    "EV": f"{ev:.1f}",
+}
 
-with col1:
-    st.metric("Pitches", pitches)
-with col2:
-    st.metric("PA", pa)
-with col3:
-    st.metric("H", len(h))
-with col4:
-    st.metric("1B", len(single))
-with col5:
-    st.metric("2B", len(double))
-with col6:
-    st.metric("3B", len(triple))
-with col7:
-    st.metric("HR", len(hr))
-with col8:
-    st.metric("AVG", f"{avg:.3f}")
-with col9:
-    st.metric("SO", so)
-with col10:
-    st.metric("K%", f"{k_pct:.1f}")
-with col11:
-    st.metric("EV", f"{ev:.1f}")
+# HTMLで表示
+html = "<div style='display:flex; gap:24px; flex-wrap:wrap;'>"
+for label, value in summary.items():
+    html += f"""
+    <div style='text-align:center;'>
+        <div style='font-size:12px; color:gray;'>{label}</div>
+        <div style='font-size:24px; font-weight:bold;'>{value}</div>
+    </div>
+    """
+html += "</div>"
+
+st.markdown(html, unsafe_allow_html=True)
 
 # ゾーンの設定
 cmap = LinearSegmentedColormap.from_list('ba', ['#4444aa', '#aa0000'])
