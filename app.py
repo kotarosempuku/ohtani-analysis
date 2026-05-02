@@ -55,12 +55,15 @@ k_pct = so / pa * 100 if pa > 0 else 0
 ev = rs['launch_speed'].mean()
 la = rs['launch_angle'].mean()
 
+st.subheader("Summary")
+
+# データを辞書にまとめる
 summary = {
     "Pitches": pitches,
     "PA": pa,
     "H": len(h),
     "1B": len(single),
-    "2B": len(double),
+    "2B": len(double_),
     "3B": len(triple),
     "HR": len(hr),
     "AVG": f"{avg:.3f}",
