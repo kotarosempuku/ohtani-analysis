@@ -35,7 +35,7 @@ at_bats = rs[
 # ヒットの定義
 hit_events = ['single', 'double', 'triple', 'home_run']
 pitches=len(rs)
-pa=(rs[rs["events"].notna()])
+pa=len(rs[rs["events"].notna()])
 ab=rs[
     rs["events"].notna()&
     ~rs["events"].isin(non_ab_events)
@@ -50,6 +50,8 @@ avg=len(h)/len(ab) if len(ab)>0 else 0
 
 so=len(ab[ab["events"]=="strikeout"])
 k_pct=so/pa*100 if pa>0 else 0
+k_pct = so / pa * 100 if pa > 0 else 0
+
 ev=rs["launch_speed"].means()
 la=rs["launch_angle"].means()
 
