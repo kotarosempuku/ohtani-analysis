@@ -55,9 +55,9 @@ k_pct = so / pa * 100 if pa > 0 else 0
 ev = rs['launch_speed'].mean()
 la = rs['launch_angle'].mean()
 
+
 st.subheader("Summary")
 
-# データを辞書にまとめる
 summary = {
     "Pitches": pitches,
     "PA": pa,
@@ -72,18 +72,11 @@ summary = {
     "EV": f"{ev:.1f}",
 }
 
-# HTMLで表示
-html = "<div style='display:flex; gap:24px; flex-wrap:wrap;'>"
-for label, value in summary.items():
-    html += f"""
-    <div style='text-align:center;'>
-        <div style='font-size:12px; color:gray;'>{label}</div>
-        <div style='font-size:24px; font-weight:bold;'>{value}</div>
-    </div>
-    """
-html += "</div>"
-
-st.markdown(html, unsafe_allow_html=True)
+cols = st.columns(len(summary))
+for i, (label, value) in enumerate(summary.items()):
+    with cols[i]:
+        st.markdown(f"**{label}**")
+        st.markdown(f"### {value}")
 
 # ゾーンの設定
 cmap = LinearSegmentedColormap.from_list('ba', ['#4444aa', '#aa0000'])
