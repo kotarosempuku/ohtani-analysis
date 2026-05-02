@@ -12,7 +12,7 @@ st.set_page_config(page_title="大谷翔平打撃分析")
 st.markdown("""
     <style>
     .block-container {
-        max-width: 900px;
+        max-width: 1200px;
         padding-left: 2rem;
         padding-right: 2rem;
     }
