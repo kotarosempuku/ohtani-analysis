@@ -63,7 +63,7 @@ summary = {
     "PA": pa,
     "H": len(h),
     "1B": len(single),
-    "2B": len(double_),
+    "2B": len(double),
     "3B": len(triple),
     "HR": len(hr),
     "AVG": f"{avg:.3f}",
